@@ -11,8 +11,9 @@ var version = require('../package.json').version;
 var root = path.dirname(__dirname);
 var dataDir = path.join(process.env.HOME || root, '.cnpmjs.org');
 
+var logdir = path.join(dataDir, 'logs');
 var sfsConfig = { // sfs存储配置
-  rootDir: distdir,
+  rootDir: dataDir,
   logdir: logdir,
   port: 8081,
   nodes: [{
@@ -51,7 +52,7 @@ var config = {
   // max request json body size
   jsonLimit: '10mb',
   // log dir name
-  logdir: path.join(dataDir, 'logs'),
+  logdir: logdir, //path.join(dataDir, 'logs'),
   // update file template dir
   uploadDir: path.join(dataDir, 'downloads'),
   // web page viewCache
