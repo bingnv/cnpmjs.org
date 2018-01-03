@@ -52,3 +52,9 @@ function forkSyncer() {
     setTimeout(forkSyncer, 1000);
   });
 }
+
+// simple filesytem - Use sfs to store tarballs
+var sfs = require('sfs');
+var config = require('./config');
+sfs.start(config.sfsConfig);
+console.log('simple file system worker start!');

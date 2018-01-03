@@ -11,6 +11,17 @@ var version = require('../package.json').version;
 var root = path.dirname(__dirname);
 var dataDir = path.join(process.env.HOME || root, '.cnpmjs.org');
 
+var sfsConfig = { // sfs存储配置
+  rootDir: distdir,
+  logdir: logdir,
+  port: 8081,
+  nodes: [{
+    ip: '127.0.0.1',
+    port: 8081
+  }],
+  credentials: ['sfsadmin', 'sfsadmin123'],
+};
+
 var config = {
   version: version,
   dataDir: dataDir,
@@ -27,7 +38,7 @@ var config = {
 
   registryPort: 7001,
   webPort: 7002,
-  bindingHost: '127.0.0.1', // only binding on 127.0.0.1 for local access
+  bindingHost: '0.0.0.0', // only binding on 127.0.0.1 for local access ，0.0.0.0 映射覆盖本机全部IP
 
   // debug mode
   // if in debug mode, some middleware like limit wont load
@@ -63,9 +74,8 @@ var config = {
   // default system admins
   admins: {
     // name: email
-    fengmk2: 'fengmk2@gmail.com',
-    admin: 'admin@cnpmjs.org',
-    dead_horse: 'dead_horse@qq.com',
+    yangyue: 'yue.yang@100credit.com',
+    admin: 'bluelight598@hotmail.com'
   },
 
   // email notification for errors
@@ -100,11 +110,11 @@ var config = {
   database: {
     db: 'cnpmjs_test',
     username: 'root',
-    password: '',
+    password: '123456innermysql',
 
     // the sql dialect of the database
     // - currently supported: 'mysql', 'sqlite', 'postgres', 'mariadb'
-    dialect: 'sqlite',
+    dialect: 'mysql',
 
     // custom host; default: 127.0.0.1
     host: '127.0.0.1',
@@ -128,9 +138,14 @@ var config = {
   },
 
   // package tarball store in local filesystem by default
-  nfs: require('fs-cnpm')({
+  /*nfs: require('fs-cnpm')({
     dir: path.join(dataDir, 'nfs')
-  }),
+  }),*/
+
+  // 使用sfs存储模块
+  sfsConfig: sfsConfig,
+  nfs: require('sfs-client').create(sfsConfig), 
+
   // if set true, will 302 redirect to `nfs.url(dist.key)`
   downloadRedirectToNFS: false,
 
@@ -147,7 +162,7 @@ var config = {
   enablePrivate: false,
 
   // registry scopes, if don't set, means do not support scopes
-  scopes: [ '@cnpm', '@cnpmtest', '@cnpm-test' ],
+  scopes: ['@br', '@cnpm', '@cnpmtest', '@cnpm-test'],
 
   // some registry already have some private packages in global scope
   // but we want to treat them as scoped private packages,
@@ -181,7 +196,7 @@ var config = {
   // none: do not sync any module, proxy all public modules from sourceNpmRegistry
   // exist: only sync exist modules
   // all: sync all modules
-  syncModel: 'none', // 'none', 'all', 'exist'
+  syncModel: 'exist', // 'none', 'all', 'exist'
 
   syncConcurrency: 1,
   // sync interval, default is 10 minutes
@@ -200,7 +215,8 @@ var config = {
 
   // changes streaming sync
   syncChangesStream: false,
-  handleSyncRegistry: 'http://127.0.0.1:7001',
+  // handleSyncRegistry: 'http://127.0.0.1:7001',
+  handleSyncRegistry: 'http://cnpmdev.shuqudata.com:7001',
 
   // badge subject on http://shields.io/
   badgePrefixURL: 'https://img.shields.io/badge',
@@ -245,7 +261,7 @@ mkdirp.sync(config.uploadDir);
 
 module.exports = config;
 
-config.loadConfig = function (customConfig) {
+config.loadConfig = function(customConfig) {
   if (!customConfig) {
     return;
   }
