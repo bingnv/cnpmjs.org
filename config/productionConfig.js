@@ -20,6 +20,9 @@ var sfsConfig = { // sfs存储配置
   nodes: [{
     ip: '172.18.30.13',
     port: 8081
+  },{
+    ip: '172.18.30.17',
+    port: 8081
   }],
   credentials: ['sfsadmin', 'sfsadmin123'],
 };
@@ -153,7 +156,7 @@ var config = {
 
   // registry url name
   // registryHost: 'r.cnpmjs.org',
-  registryHost: 'cnpm.shuqudata.com',
+  registryHost: 'registry.shuqudata.com',
 
   /**
    * registry mode config
@@ -219,7 +222,8 @@ var config = {
   // changes streaming sync
   syncChangesStream: false,
   // handleSyncRegistry: 'http://127.0.0.1:7001',
-  handleSyncRegistry: 'http://cnpm.shuqudata.com:7001',
+  // handleSyncRegistry: 'http://cnpm.shuqudata.com:7001', // 仓库域名
+  handleSyncRegistry: 'http://registry.shuqudata.com', // 仓库域名
 
   // badge subject on http://shields.io/
   badgePrefixURL: 'https://img.shields.io/badge',
