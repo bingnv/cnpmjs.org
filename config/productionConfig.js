@@ -80,7 +80,8 @@ var config = {
   admins: {
     // name: email
     yangyue: 'yue.yang@100credit.com',
-    admin: 'bluelight598@hotmail.com'
+    bluelight598: '375543027@qq.com',
+    admin: 'bluelight598@hotmail.com',
   },
 
   // email notification for errors
