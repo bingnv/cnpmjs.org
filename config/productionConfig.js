@@ -113,7 +113,8 @@ var config = {
    */
 
   database: {
-    db: 'cnpmjs_test',
+    // db: 'cnpmjs_test',
+    db: 'cn_cnpm',
     username: 'fedadmin',
     password: '8215q5mzuWBDye95H',
 
@@ -122,7 +123,7 @@ var config = {
     dialect: 'mysql',
 
     // custom host; default: 127.0.0.1
-    host: '172.18.30.13',
+    host: '192.168.23.220',
 
     // custom port; default: 3306
     port: 3306,
