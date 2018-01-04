@@ -4,6 +4,7 @@
   "description": "Private npm registry and web for Enterprise, base on MySQL and Simple Store Service",
   "main": "index.js",
   "scripts": {
+    "production": "export NODE_ENV=production && nohup node dispatch.js &",
     "dev": "DEBUG=cnpm* node dispatch.js",
     "test": "make jshint && make test",
     "start": "./bin/nodejsctl start && cp History.md docs/web/history.md",

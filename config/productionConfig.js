@@ -114,8 +114,8 @@ var config = {
 
   database: {
     // db: 'cnpmjs_test',
-    db: 'cn_cnpm',
-    username: 'fedadmin',
+    db: 'cnpmjs',
+    username: 'cn_cnpm',
     password: '8215q5mzuWBDye95H',
 
     // the sql dialect of the database
