@@ -20,9 +20,9 @@ var sfsConfig = { // sfs存储配置
   nodes: [{
     ip: '172.18.30.13',
     port: 8081
-  },{
-    ip: '172.18.30.17',
-    port: 8081
+  // },{
+  //   ip: '172.18.30.17',
+  //   port: 8081
   }],
   credentials: ['sfsadmin', 'sfsadmin123'],
 };
@@ -169,7 +169,17 @@ var config = {
   enablePrivate: false,
 
   // registry scopes, if don't set, means do not support scopes
-  scopes: ['@br', '@cnpm', '@cnpmtest', '@cnpm-test'],
+  scopes: ['@br'],
+
+  // yangyue add :
+  // redirect @cnpm/private-package => private-package
+  // forward compatbility for update from lower version cnpmjs.org
+  adaptScope: true,
+
+  // yangyue add :
+  // force user publish with scope
+  // but admins still can publish without scope
+  forcePublishWithScope: true,
 
   // some registry already have some private packages in global scope
   // but we want to treat them as scoped private packages,
