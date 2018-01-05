@@ -90,3 +90,5 @@ proto.search = function*(query, options) {
 		"scopes": ["@br"]
 	}]
 };
+
+module.exports = UserService;
