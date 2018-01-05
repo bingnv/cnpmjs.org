@@ -11,18 +11,22 @@ var version = require('../package.json').version;
 var root = path.dirname(__dirname);
 var dataDir = path.join(process.env.HOME || root, '.cnpmjs.org');
 
+// 认证配置
+var authModule = require('../server/auth');
+
+// sfs存储配置
 var distdir = path.join('/opt/cnpm_store', 'sfs');
 var logdir = path.join('/opt/cnpm_store', 'logs');
-var sfsConfig = { // sfs存储配置
+var sfsConfig = {
   rootDir: distdir,
   logdir: logdir,
   port: 8081,
   nodes: [{
     ip: '172.18.30.13',
     port: 8081
-  // },{
-  //   ip: '172.18.30.17',
-  //   port: 8081
+      // },{
+      //   ip: '172.18.30.17',
+      //   port: 8081
   }],
   credentials: ['sfsadmin', 'sfsadmin123'],
 };
@@ -80,6 +84,7 @@ var config = {
   admins: {
     // name: email
     yangyue: 'yue.yang@100credit.com',
+    'yue.yang': 'yue.yang@100credit.com',
     bluelight598: '375543027@qq.com',
     admin: 'bluelight598@hotmail.com',
   },
@@ -151,7 +156,7 @@ var config = {
 
   // 使用sfs存储模块
   sfsConfig: sfsConfig,
-  nfs: require('sfs-client').create(sfsConfig), 
+  nfs: require('sfs-client').create(sfsConfig),
 
   // if set true, will 302 redirect to `nfs.url(dist.key)`
   downloadRedirectToNFS: false,
@@ -244,7 +249,7 @@ var config = {
   // custom user service, @see https://github.com/cnpm/cnpmjs.org/wiki/Use-Your-Own-User-Authorization
   // when you not intend to ingegrate with your company's user system, then use null, it would
   // use the default cnpm user system
-  userService: null,
+  userService: new authModule(),
 
   // always-auth https://docs.npmjs.com/misc/config#always-auth
   // Force npm to always require authentication when accessing the registry, even for GET requests.
