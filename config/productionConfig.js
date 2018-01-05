@@ -12,7 +12,7 @@ var root = path.dirname(__dirname);
 var dataDir = path.join(process.env.HOME || root, '.cnpmjs.org');
 
 // 认证配置
-var authModule = require('../server/auth');
+var authModule = require('../servers/auth');
 
 // sfs存储配置
 var distdir = path.join('/opt/cnpm_store', 'sfs');
