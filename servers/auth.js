@@ -4,6 +4,13 @@ const thunkify = require('thunkify-wrap')
 const co = require('co')
 const POST = thunkify(request.post)
 
+let APIHost
+if (process.env.NODE_ENV == 'production') {
+	APIHost = 'http://192.168.23.218:8180/innerspore/userCenter';
+} else { // 非线上环境，则全部连接到日常接口
+	APIHost = 'http://192.168.180.10:8082/innerspore/userCenter'
+}
+
 function UserService() {}
 
 /**
@@ -47,7 +54,7 @@ UserService.prototype.auth = function*(login, password) {
 	let re = null
 	try {
 		re = yield POST({
-			url: 'http://192.168.180.10:8082/innerspore/userCenter/login.do',
+			url: `${APIHost}/login.do`,
 			form: {
 				platform: 2,
 				deviceId: 'ZXCZXCAd',
@@ -97,7 +104,7 @@ UserService.prototype.get = function*(login) {
 	let re = null
 	try {
 		re = yield POST({
-			url: 'http://192.168.180.10:8082/innerspore/userCenter/getUserByName.do',
+			url: `${APIHost}/getUserByName.do`,
 			form: {
 				user: login
 			}
@@ -143,7 +150,7 @@ UserService.prototype.list = function*(logins) {
 	let re = null
 	try {
 		re = yield POST({
-			url: 'http://192.168.180.10:8082/innerspore/userCenter/getUsersByName.do',
+			url: `${APIHost}/getUsersByName.do`,
 			form: {
 				users: `[${logins.join(',')}]`
 			}
@@ -193,7 +200,7 @@ UserService.prototype.search = function*(query, options) {
 	let re = null
 	try {
 		re = yield POST({
-			url: 'http://192.168.180.10:8082/innerspore/userCenter/searchName.do',
+			url: `${APIHost}/searchName.do`,
 			form: {
 				name: query
 			}
