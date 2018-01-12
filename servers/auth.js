@@ -83,7 +83,7 @@ UserService.prototype.auth = function*(login, password) {
 					"email": `${username}@100credit.com`,
 					"name": username,
 					"site_admin": false,
-					"scopes": ["@br"]
+					"scopes": ["@bairong"]
 				}
 			}
 		} catch (err) {
@@ -129,7 +129,7 @@ UserService.prototype.get = function*(login) {
 					"email": result.user.email,
 					"name": username,
 					"site_admin": (result.authMap[2][3] == 400),
-					"scopes": ["@br"]
+					"scopes": ["@bairong"]
 				}
 			}
 		} catch (err) {
@@ -176,7 +176,7 @@ UserService.prototype.list = function*(logins) {
 						"email": userValue.user.email,
 						"name": username,
 						"site_admin": (userValue.authMap[2][3] == 400),
-						"scopes": ["@br"]
+						"scopes": ["@bairong"]
 					})
 				}
 			} catch (err) {
@@ -226,7 +226,7 @@ UserService.prototype.search = function*(query, options) {
 						"email": userValue.user.email,
 						"name": username,
 						"site_admin": (userValue.authMap[2][3] == 400),
-						"scopes": ["@br"]
+						"scopes": ["@bairong"]
 					})
 				}
 			} catch (err) {
