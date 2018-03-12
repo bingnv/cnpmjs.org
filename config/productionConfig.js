@@ -83,8 +83,6 @@ var config = {
   // default system admins
   admins: {
     // name: email
-    yangyue: 'yue.yang@100credit.com',
-    'yue.yang': 'yue.yang@100credit.com',
     bluelight598: '375543027@qq.com',
     admin: 'bluelight598@hotmail.com',
   },
@@ -122,7 +120,7 @@ var config = {
     // db: 'cnpmjs_test',
     db: 'cnpmjs',
     username: 'cn_cnpm',
-    password: '8215q5mzuWBDye95H',
+    password: 'sa',
 
     // the sql dialect of the database
     // - currently supported: 'mysql', 'sqlite', 'postgres', 'mariadb'
