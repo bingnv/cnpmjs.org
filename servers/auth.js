@@ -6,9 +6,9 @@ const POST = thunkify(request.post)
 
 let APIHost
 if (process.env.NODE_ENV == 'production') {
-	APIHost = 'http://192.168.23.218:8180/innerspore/userCenter';
+	APIHost = 'http://192.168.0.11:8180/innerspore/userCenter';
 } else { // 非线上环境，则全部连接到日常接口
-	APIHost = 'http://192.168.180.10:8082/innerspore/userCenter'
+	APIHost = 'http://192.168.0.10:8082/innerspore/userCenter'
 }
 
 function UserService() {}
