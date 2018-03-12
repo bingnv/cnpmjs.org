@@ -112,7 +112,7 @@ var config = {
   database: {
     db: 'cnpmjs_test',
     username: 'root',
-    password: '123456innermysql',
+    password: 'sa',
 
     // the sql dialect of the database
     // - currently supported: 'mysql', 'sqlite', 'postgres', 'mariadb'
